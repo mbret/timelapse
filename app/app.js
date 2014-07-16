@@ -38,7 +38,7 @@ app.use( morgan({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'assets')));
 
 
 /**===========================================
@@ -77,8 +77,7 @@ app.use( function pageNotFoundError(req, res, next) {
  * Error handler
  */
 app.use( function errorHandler(err, req, res, next) {
-    var errStatus = err.status || 500;
-    res.status = errStatus;
+    res.status = err.status || 500;
     res.json( {
         code: err.code,
         message: err.message,
