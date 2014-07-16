@@ -1,4 +1,4 @@
-node_api_skeleton
+Node API Skeleton
 =================
 
 Simple api skeleton using node.js. This RESTful api is based on REST and use then as much as possible HTTP standard and info to treat a request and provide a response. The api call are based on HTTP verbose and url definition.
