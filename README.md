@@ -5,7 +5,8 @@ Simple api skeleton using node.js. This RESTful api is based on REST and use the
 
 This applicaiton is a basic but ready to use skeleton. It use a mysql database and implement the minimal requirement for production's release.
 
-This application is based on these convention/best practices:
+This application is based on these convention/best practices
+------------------------------------------------------------
 * API is based on snake_case.
 * All 400 and 500 HTTP status series comes with error response.
 * http://labs.omniti.com/labs/jsend.
