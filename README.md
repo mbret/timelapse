@@ -7,14 +7,14 @@ This applicaiton is a basic but ready to use skeleton. It use a mysql database a
 
 * Response format use http://labs.omniti.com/labs/jsend convention.
 
-What is provided and implemented by the skeleton:
--------------------------------------------------
+What is provided and implemented by the skeleton
+------------------------------------------------
 * Logging of request traffic and application logging.
 * Separate config files and server management.
 * Separate and structurated routes system.
 
-Here are the current supported api call:
-----------------------------------------
+Here are the current supported api call
+---------------------------------------
 | Resource	  | GET | POST | PUT | DELETE |
 | ------------- | ------------- | ------------- | ------------- |------------- |
 | /products  | Get the list of products  | Add a new product | Update multiple products | Delete all products |
