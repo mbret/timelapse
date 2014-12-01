@@ -33,11 +33,20 @@ orm.initialize( require('./config/waterline') , function(err, models) {
     require('./config/passport')(app, passport, config);
 
 
-
     // Bootstrap application settings
     require('./config/express')(app, passport, config);
 
 
+    // Inject plugins
+    app.plugins = {};
+    require('fs').readdirSync( config.plugins.path ).forEach(function (file) {
+        if (~file.indexOf('.js')){
+            var pluginName = file.substr(0, file.length - '.js'.length);
+            var plugin = require( config.plugins.path + '/' + file);
+            app.use( require( plugin.dispatch ) );
+            app.plugins[pluginName] = plugin;
+        }
+    });
 
     // Bootstrap routes
     // load controllers

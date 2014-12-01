@@ -9,15 +9,6 @@ var extend = require('util')._extend;
 var development = require('./env/development');
 var production = require('./env/production');
 
-var notifier = {
-    service: 'postmark',
-    APN: false,
-    email: true, // true
-    actions: ['comment'],
-    tplPath: path.normalize(__dirname + '/../app/mailer/templates'),
-    key: 'POSTMARK_KEY'
-};
-
 /*******************************************
  *
  * Default configurations
@@ -25,24 +16,22 @@ var notifier = {
  *******************************************/
 var defaults = {
     root: path.normalize(__dirname + '/..'),
-    notifier: notifier,
 
-    /*******************************************
-     *
-     * Server configurations
-     *
-     *******************************************/
+    notifier: {
+        service: 'postmark',
+        APN: false,
+        email: true, // true
+        actions: ['comment'],
+        tplPath: path.normalize(__dirname + '/../app/mailer/templates'),
+        key: 'POSTMARK_KEY'
+    },
+
     get server() {
         return {
             port: process.env.PORT || 3000
         }
     },
 
-    /*******************************************
-     *
-     * Views configurations
-     *
-     *******************************************/
     get views() {
         return {
             engine: 'swig',
@@ -53,11 +42,6 @@ var defaults = {
         }
     },
 
-    /*******************************************
-     *
-     * Responses configurations
-     *
-     *******************************************/
     get responses() {
         return {
             path: this.root + '/app/responses'
@@ -73,6 +57,12 @@ var defaults = {
     get session() {
         return {
             secret: 'a05a8ds39d9524adfc77359b58e8792d'
+        }
+    },
+
+    get plugins(){
+        return {
+            path: this.root + '/app/plugins'
         }
     }
 };
