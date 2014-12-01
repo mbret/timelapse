@@ -18,10 +18,65 @@ var notifier = {
     key: 'POSTMARK_KEY'
 };
 
+/*******************************************
+ *
+ * Default configurations
+ *
+ *******************************************/
 var defaults = {
     root: path.normalize(__dirname + '/..'),
-    notifier: notifier
+    notifier: notifier,
+
+    /*******************************************
+     *
+     * Server configurations
+     *
+     *******************************************/
+    get server() {
+        return {
+            port: process.env.PORT || 3000
+        }
+    },
+
+    /*******************************************
+     *
+     * Views configurations
+     *
+     *******************************************/
+    get views() {
+        return {
+            engine: 'swig',
+            path: this.root + '/app/views',
+            assets: {
+                path: this.root + '/public/assets'
+            }
+        }
+    },
+
+    /*******************************************
+     *
+     * Responses configurations
+     *
+     *******************************************/
+    get responses() {
+        return {
+            path: this.root + '/app/responses'
+        }
+    },
+
+    get models() {
+        return {
+            path: this.root + '/app/models'
+        }
+    },
+
+    get session() {
+        return {
+            secret: 'a05a8ds39d9524adfc77359b58e8792d'
+        }
+    }
 };
+
 
 /**
  * Expose

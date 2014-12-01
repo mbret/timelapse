@@ -3,33 +3,25 @@
  * Module dependencies.
  */
 
-var mongoose = require('mongoose');
-var LocalStrategy = require('passport-local').Strategy;
-var User = mongoose.model('User');
-
-var local = require('./passport/local');
-var google = require('./passport/google');
-var facebook = require('./passport/facebook');
-
 /**
  * Expose
  */
 
-module.exports = function (passport, config) {
+module.exports = function (app, passport, config) {
 
     // serialize sessions
     passport.serializeUser(function(user, done) {
-        done(null, user.id)
-    })
+        return done(null, user.id)
+    });
 
     passport.deserializeUser(function(id, done) {
-        User.load({ criteria: { _id: id } }, function (err, user) {
-            done(err, user)
+        app.models.user.findOne({ id: id }, function (err, user) {
+            return done(err, user);
         })
-    })
+    });
 
     // use these strategies
-    passport.use(local);
-    passport.use(google);
-    passport.use(facebook);
+    passport.use( require('./passport/local')(app, config) );
+//    passport.use( require('./passport/google')(app, config) );
+//    passport.use( require('./passport/facebook')(app, config) );
 };

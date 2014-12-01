@@ -1,3 +1,4 @@
 .idea
 app/data/logs/
 node_modules
+.tmp

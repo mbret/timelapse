@@ -1,25 +1,51 @@
 
 var express = require('express');
 var config = require('./config/config');
-//var passport = require('passport');
-var models = require("./app/models");
+var Waterline = require('waterline');
+var passport = require('passport');
 
 var app = express();
-app.set('port', process.env.PORT || 3000);
 
-// Bootstrap passport config
-//require('./config/passport')(passport, config);
+app.set('port', config.server.port);
 
-// Bootstrap application settings
-require('./config/express')(app, /*passport*/ null);
-
-// Bootstrap routes
-require('./config/routes')(app, /*passport*/ null);
+// Instantiate a new instance of the ORM
+var orm = new Waterline();
 
 
-models.sequelize.sync().success(function () {
+/*
+ * Load the Waterline Models
+ */
+require('fs').readdirSync( config.models.path ).forEach(function (file) {
+    if (~file.indexOf('.js')){
+        orm.loadCollection( require( config.models.path + '/' + file) )
+    }
+});
+
+
+// Start Waterline passing adapters in
+orm.initialize( require('./config/waterline') , function(err, models) {
+    if(err) throw err;
+
+    app.models = models.collections;
+    app.connections = models.connections;
+
+    // Bootstrap passport config
+    require('./config/passport')(app, passport, config);
+
+
+
+    // Bootstrap application settings
+    require('./config/express')(app, passport, config);
+
+
+
+    // Bootstrap routes
+    // load controllers
+    require('./config/routes')(app, passport, config);
+
+    // Start Server
     var server = app.listen(app.get('port'), function() {
-        debug('Express server listening on port ' + server.address().port);
+        console.log('Express server listening on port ' + server.address().port);
     });
 });
 
