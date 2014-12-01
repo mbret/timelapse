@@ -3,7 +3,6 @@ var Promise = require("bluebird");
 module.exports = {
 
     index: function (req, res) {
-
         res.sendOk({foo: 'bar'}, 'index');
     },
 
@@ -32,7 +31,10 @@ module.exports = {
 
             return res.sendOk({
                 foo: 'bar',
-                users: users
+                users: users,
+
+                // Call a plugin method
+                bar: app.plugins.foo.bar(1, 2)
             })
 
         }).catch(function(err){

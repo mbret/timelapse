@@ -43,7 +43,7 @@ orm.initialize( require('./config/waterline') , function(err, models) {
         if (~file.indexOf('.js')){
             var pluginName = file.substr(0, file.length - '.js'.length);
             var plugin = require( config.plugins.path + '/' + file);
-            app.use( require( plugin.dispatch ) );
+            app.use( plugin.dispatch );
             app.plugins[pluginName] = plugin;
         }
     });

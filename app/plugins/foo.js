@@ -6,7 +6,7 @@ module.exports = {
         return next();
     },
 
-    foo: function( foo, bar ){
+    bar: function( foo, bar ){
         return foo + bar;
     }
 

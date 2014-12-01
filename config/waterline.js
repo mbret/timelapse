@@ -19,7 +19,7 @@ module.exports = {
     },
 
     defaults: {
-        migrate: 'alter'
+        migrate: 'drop'
     }
 
 };
