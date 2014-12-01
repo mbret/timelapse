@@ -32,7 +32,6 @@ orm.initialize( require('./config/waterline') , function(err, models) {
     // Bootstrap passport config
     require('./config/passport')(app, passport, config);
 
-
     // Bootstrap application settings
     require('./config/express')(app, passport, config);
 
