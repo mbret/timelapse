@@ -2,44 +2,37 @@ var Promise = require("bluebird");
 
 module.exports = {
 
+    /**
+     * First call
+     * /q? ...
+     */
     index: function (req, res) {
-        res.sendOk({foo: 'bar'}, 'index');
+
+        console.log(req.query);
+
+        // Handle query ?q
+        var mappingQ = {
+            'Quelle est ton adresse email ?': 'mail@mail.com',
+            'Es-tu content de participer ? (OUI/NON)': 'OUI',
+            'Es-tu que tu as compris le principe du jeu ? (OUI/NON)': 'OUI',
+            'Es-tu que tu reponds toujours oui ? (OUI/NON)': 'NON'
+        }
+        if( req.param('q') && req.param('q') in mappingQ ){
+            return res.send( mappingQ[req.param('q')] );
+        }
+
+        return res.send('nothing');
     },
 
     /**
-     * This is a example route
-     *
+     * Post enonce call
+     * POST /enonce/1
      */
-    example: function(req, res) {
+    retrieveEnonce: function(req, res){
 
-        // get app
-        var app = req.app;
-
-        // send json anyway
-        req.wantsJSON = true;
-
-        // add one user
-        app.models.user.create({login:'demo', password:'demo'}).then(function(user){
-
-            // retrieve users
-            var users = app.models.user.find().then(function(users){
-                return users;
-            });
-            return [users];
-
-        }).spread(function(users){
-
-            return res.sendOk({
-                foo: 'bar',
-                users: users,
-
-                // Call a plugin method
-                bar: app.plugins.foo.bar(1, 2)
-            })
-
-        }).catch(function(err){
-            return next(err);
-        });
+        console.log(req.body);
+        return res.send('nothing');
 
     }
+
 }

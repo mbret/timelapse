@@ -3,7 +3,6 @@
  */
 
 var indexController = require('../app/controllers/index');
-var authController = require('../app/controllers/auth');
 
 /**
  * Expose routes
@@ -14,10 +13,7 @@ module.exports = function (app, passport, config) {
 
     // Index
     app.get('/', indexController.index);
-    app.get('/example', indexController.example);
-
-    // Auth
-    app.post('/signin', authController.signin);
+    app.post('/enonce/:id', indexController.retrieveEnonce);
 
     /**
      * Error handling
@@ -32,7 +28,7 @@ module.exports = function (app, passport, config) {
     });
 
     app.use(function (err, req, res, next) {
-        console.error(err.stack);
+        app.logger.error(err);
         // error page
         res.sendServerError({ error: err.stack });
     });
