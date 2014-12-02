@@ -15,6 +15,7 @@ app.logger = require('./config/logger')(app); // Get and create first time logge
 var orm = new Waterline();
 
 
+
 /*
  * Load the Waterline Models
  */
