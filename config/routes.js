@@ -26,25 +26,13 @@ module.exports = function (app, passport, config) {
 
     // assume 404 since no middleware responded
     app.use(function (req, res, next) {
-        return res.sendNotFound(res, '404', {
-            url: req.originalUrl,
-            error: 'Not found'
-        });
+        return res.sendStatus(404);
     });
 
     app.use(function (err, req, res, next) {
-//        app.logger.error(err);
+        console.error(err.stack);
         // error page
-        // Case of configuration has been entire loaded
-        if(res.sendServerError){
-
-        }
-        // Case of something thrown an error during middleware process and responses has not been loaded
-        else{
-            console.error(err.stack);
-            // error page
-            res.status(500).render('500', { error: err.stack });
-        }
+        res.status(500).json({ error: err.stack });
     });
 
 }
