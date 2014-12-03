@@ -18,6 +18,7 @@ module.exports = function (app, passport, config) {
     app.get('/enonce/:id', indexController.getEnonce);
     app.get('/rooms/:id', indexController.getRoom);
     app.get('/rooms', indexController.getRooms);
+    app.post('/message', indexController.message);
 
     /**
      * Error handling
