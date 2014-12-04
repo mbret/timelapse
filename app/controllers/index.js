@@ -9,53 +9,62 @@ var rooms = {
 
         "b212":{
             "capacity": 100,
-            "links":[
-                {
-                    "rel":"self",
-                    "uri":"http://timelapse.unreachable.me/rooms/b212"
-                }
-            ]
+            "links":{
+                "rel":"self",
+                "uri":"http://timelapse.unreachable.me/rooms/b212"
+            },
+            "id": "b212",
+            "description": "La salle b212",
+            "projector": "true"
+
         },
         "c181": {
             "capacity": 200,
-            "links":[
-                {
-                    "rel":"self",
+            "links":{
+                "rel":"self",
 
-                    "uri":"http://timelapse.unreachable.me/rooms/c181"
-                }
-            ]
+                "uri":"http://timelapse.unreachable.me/rooms/c181"
+            },
+            "id": "c181",
+            "description": "La salle c181",
+            "projector": "false"
+
         },
         "1213": {
             "capacity": 50,
-            "links":[
-                {
+            "links":{
                     "rel":"self",
 
                     "uri":"http://timelapse.unreachable.me/rooms/1213"
-                }
-            ]
+                },
+            "id": "1213",
+            "description": "La salle 1213",
+            "projector": "false"
+
         },
         "1214": {
 
             "capacity": 400,
-            "links":[
-                {
-                "rel":"self",
+            "links":{
+            "rel":"self",
 
-                "uri":"http://timelapse.unreachable.me/rooms/1214"
-                }
-            ]
+            "uri":"http://timelapse.unreachable.me/rooms/1214"
+            },
+            "id": "1214",
+            "description": "La salle 1214",
+            "projector": "false"
+
         },
         "1215" : {
             "capacity": 200,
-            "links":[
-            {
+            "links":{
                 "rel":"self",
-
                 "uri":"http://timelapse.unreachable.me/rooms/1215"
-                }
-            ]
+            },
+            "id": "1215",
+            "description": "La salle 1215",
+            "projector": "true"
+
         }
 };
 
