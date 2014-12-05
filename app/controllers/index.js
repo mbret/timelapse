@@ -21,7 +21,6 @@ var rooms = {
             "links":[
                 {
                     "rel":"self",
-
                     "uri":"http://timelapse.unreachable.me/rooms/c181"
                 }
             ]
@@ -31,7 +30,6 @@ var rooms = {
             "links":[
                 {
                     "rel":"self",
-
                     "uri":"http://timelapse.unreachable.me/rooms/1213"
                 }
             ]
@@ -42,7 +40,6 @@ var rooms = {
             "links":[
                 {
                 "rel":"self",
-
                 "uri":"http://timelapse.unreachable.me/rooms/1214"
                 }
             ]
@@ -58,6 +55,39 @@ var rooms = {
             ]
         }
 };
+
+var slots = [
+    {
+        id: null,
+        title: null,
+        description: null,
+        room: null,
+        // yyyy-MM-dd HH:mm (2013-12-25 21:30)
+        start: null,
+        // yyyy-MM-dd HH:mm (2013-12-25 21:30)
+        stop: null
+    },
+    {
+        id: null,
+        title: null,
+        description: null,
+        room: null,
+        // yyyy-MM-dd HH:mm (2013-12-25 21:30)
+        start: null,
+        // yyyy-MM-dd HH:mm (2013-12-25 21:30)
+        stop: null
+    },
+    {
+        id: null,
+        title: null,
+        description: null,
+        room: null,
+        // yyyy-MM-dd HH:mm (2013-12-25 21:30)
+        start: null,
+        // yyyy-MM-dd HH:mm (2013-12-25 21:30)
+        stop: null
+    }
+];
 
 module.exports = {
 
@@ -93,7 +123,7 @@ module.exports = {
         require('fs').readFile(req.app.config.root + '/data/enonce/' + req.param('id') + '.html', 'utf8', function (err,data) {
             if (err) {
                 if(err.code == 'ENOENT'){
-                    return res.sendBadRequest();
+                    return res.sendNotFound();
                 }
                 return next(err);
             }
