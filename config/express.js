@@ -131,7 +131,7 @@ module.exports = function (app, passport, config) {
         getRawBody(req, 'utf8', function (err, string) {
             if (err) return next(err);
             req.rawBody = string;
-            next()
+            return next()
         });
     });
 

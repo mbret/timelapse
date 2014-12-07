@@ -14,9 +14,20 @@ module.exports = function (app, passport, controllers) {
     app.get('/', controllers.index.index);
     app.post('/enonce/:id',controllers.index.retrieveEnonce);
     app.get('/enonce/:id', controllers.index.getEnonce);
+
+    app.get('/rooms/:id/slots', controllers.index.getSlotsFromRoom);
     app.get('/rooms/:id', controllers.index.getRoom);
     app.get('/rooms', controllers.index.getRooms);
+
     app.post('/message', controllers.index.message);
+
+    app.get('/slots/:id', controllers.index.getSlot);
+    app.get('/slots', controllers.index.getSlots);
+    app.post('/slots', controllers.index.createSlot);
+    app.delete('/slots/:id', controllers.index.deleteSlot);
+    app.put('/slots/:id', controllers.index.updateSlot);
+
+    app.get('/files/:id', controllers.index.downloadFile);
 
     // Error handling
     // These two special routes will handle 404 and 500

@@ -6,9 +6,17 @@ module.exports = Waterline.Collection.extend({
     connection: 'myLocalDisk',
 
     attributes: {
+        id: {
+            type: 'string',
+            primaryKey: true
+//            required: true
+        },
         capacity: 'integer',
-        links: 'string',
-        login: 'string',
-        password: 'string'
+        description: 'text',
+        projector: 'json',
+        slots: {
+            collection: 'slot',
+            via: 'room'
+        }
     }
 });

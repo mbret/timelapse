@@ -25,8 +25,6 @@ module.exports = function sendBadRequest(data, options) {
     // Set status code
     res.status(400);
 
-    var winston = require('winston');
-
     // Log error to console
     if (data !== undefined) {
         app.logger.debug('Sending 400 ("Bad Request") response: \n', data);
